@@ -7,8 +7,12 @@ public class Point {
         xyz = new Double3(x, y, z);
     }
 
+    public Point(Double3 xyz){
+        this(xyz.d1, xyz.d2, xyz.d3);
+    }
+
     public Vector subtract(Point p2){
-        return new Vector(xyz.subtract(p2.xyz))
+        return new Vector(xyz.subtract(p2.xyz));
     }
 
     public Point add(Vector v){

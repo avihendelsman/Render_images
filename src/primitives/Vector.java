@@ -3,6 +3,16 @@ package primitives;
 public class Vector extends Point {
     public Vector(double x, double y, double z){
         super(x,y,z);
+        if(xyz.equals(ZERO)){
+            throw new IllegalArgumentException("vector zero are not allowed");
+        }
+    }
+
+    public Vector(Double3 xyz){
+        super(xyz);
+        if(xyz.equals(ZERO)){
+            throw new IllegalArgumentException("vector zero are not allowed");
+        }
     }
 
     public Vector add(Vector v2){
