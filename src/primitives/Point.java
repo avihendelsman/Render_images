@@ -28,4 +28,23 @@ public class Point {
     public double distance(Point p2){
         return Math.sqrt(distanceSquared(p2));
     }
-}
+
+    /**
+     * get the field
+     * @return Double3
+     */
+
+    public Double3 getPoint(){
+        return xyz;
+    }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null) return false;
+            if (!(obj instanceof Point)) return false;
+            Point other = (Point)obj;
+            return this.xyz.equals(other.xyz) ;
+        }
+    }
+

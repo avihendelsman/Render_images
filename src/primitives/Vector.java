@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Double3.ZERO;
+
 public class Vector extends Point {
     public Vector(double x, double y, double z){
         super(x,y,z);
@@ -74,4 +76,5 @@ public class Vector extends Point {
     public Vector normalize(){
         return (scale(1/length()));
     }
+
 }
