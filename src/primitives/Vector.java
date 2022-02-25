@@ -17,12 +17,12 @@ public class Vector extends Point {
 
     public Vector add(Vector v2){
         Double3 temp = xyz.add(v2.xyz);
-        return new Vector(temp.d1, temp.d2, temp.d3,);
+        return new Vector(temp.d1, temp.d2, temp.d3);
     }
 
     public Vector subtract(Vector v2){
         Double3 temp = xyz.subtract(v2.xyz);
-        return new Vector(temp.d1, temp.d2, temp.d3,);
+        return new Vector(temp.d1, temp.d2, temp.d3);
     }
 
     public Vector scale(double scalar){

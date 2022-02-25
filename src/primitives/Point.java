@@ -16,8 +16,7 @@ public class Point {
     }
 
     public Point add(Vector v){
-        Double3 temp =  xyz.add(v.xyz);
-        return new Point(Double3.d1, Double3.d2, Double3.d3);
+        return new Point(xyz.add(v.xyz));
     }
 
     public double distanceSquared(Point p2){
