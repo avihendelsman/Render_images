@@ -16,7 +16,33 @@ public class Plane implements Geometry{
         normal = null;
     }
 
+    /**
+     * the func get p0's field.
+     * @return p0.
+     */
+    public Point getP0(){
+        return p0;
+    }
+
+    /**
+     * the func get normal's field.
+     * @return normal.
+     */
+    public Vector getNormal(){
+        return normal;
+    }
+
+    /**
+     * the func implements getNormal method.
+     * @param p
+     * @return null;
+     */
     public Vector getNormal(Point p){
         return null;
+    }
+
+    @Override
+    public String toString(){
+        return "Point is: " + "p0" + "\nVector is: " + "normal";
     }
 }
