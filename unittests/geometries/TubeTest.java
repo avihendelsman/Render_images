@@ -22,6 +22,7 @@ class TubeTest {
         Ray ray = new Ray(pt, vec);
         Tube tube = new Tube(ray, 5);
 
+
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Wrong normal calculation (in case the point is not across the ray.p0)
