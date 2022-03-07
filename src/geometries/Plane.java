@@ -26,8 +26,22 @@ public class Plane implements Geometry{
      * @param p3 point p3
      */
     public Plane(Point p1, Point p2, Point p3){
-        p0 = p2;
-        normal = null;
+
+        if (p1.equals(p2) || p2.equals(p3) || p3.equals(p1))
+            throw new IllegalArgumentException("Two of the points are the same point");
+
+        Vector v1 = p2.subtract(p1);
+        Vector v2 = p3.subtract(p1);
+
+        try{
+            Vector cross = v1.crossProduct(v2);
+
+            p0 = p2;
+            normal = cross.normalize();
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("The points are on the same line");
+        }
     }
 
     /**
@@ -52,7 +66,7 @@ public class Plane implements Geometry{
      * @return null;
      */
     public Vector getNormal(Point p){
-        return null;
+        return normal;
     }
 
     @Override
