@@ -35,6 +35,7 @@ public class Tube implements Geometry{
         return radius;
     }
 
+    @Override
     public Vector getNormal(Point p){
         double t = (axisRay.getDir()).dotProduct(p.subtract(axisRay.getP0()));
         if (t != 0) //in case the point is not across the ray point
