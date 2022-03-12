@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Testing Plane
  *
- * @author Dan
+ * @author
  *
  */
 class PlaneTest {
@@ -44,8 +44,9 @@ class PlaneTest {
 
         // ============ Equivalence Partitions Tests ==============
 
-        // TC01: There is a simple single test here
+        // TC01: There is a simple single test here. The normal vector is (1,1,1)
         Plane pl = new Plane(new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 0, 1));
+
         double sqrt3 = Math.sqrt(1d / 3); // Normalizing the vector components
 
         // Two opposite sides of the vector must be checked:

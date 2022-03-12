@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Testing Cylinder
  *
- * @author Dan
+ * @author
  *
  */
 class CylinderTest {
@@ -18,7 +18,9 @@ class CylinderTest {
      */
     @Test
     void getNormal() {
+
         // ============ Equivalence Partitions Tests ==============
+
         var cylinder = new Cylinder(new Ray(new Point(0, 0, 1), new Vector(0, 0, 1)), 1, 9);
 
         // TC01: Check that the normal is correct on body

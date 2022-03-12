@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Testing Sphere
  *
- * @author Dan
+ * @author
  *
  */
 class SphereTest {
