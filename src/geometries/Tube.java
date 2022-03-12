@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  *  The class defines a geometries type - "Tube".
  */
@@ -45,6 +47,11 @@ public class Tube implements Geometry{
         }
         else // in case the point is across the ray point
             return p.subtract(axisRay.getP0()).normalize();
+    }
+
+    @Override
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
     }
 
     @Override

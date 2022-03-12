@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  *  The class defines a geometries type - "Cylinder".
  */
@@ -40,6 +42,11 @@ public class Cylinder extends Tube{
         } catch (Exception e) {
             return dir;
         }
+    }
+
+    @Override
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
     }
 
     @Override

@@ -2,6 +2,8 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 /**
  * The class defines a geometries type - "Triangle".
  */
@@ -20,5 +22,10 @@ public class Triangle extends Polygon {
     @Override
     public Vector getNormal(Point p){
         return super.getNormal(p);
+    }
+
+    @Override
+    public List<Point> findIntsersections(Ray ray) {
+        return null;
     }
 }

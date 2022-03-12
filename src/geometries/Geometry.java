@@ -5,7 +5,7 @@ import primitives.*;
 /**
  * Interface for general geometric obj.
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
     /**
      * abstract func who return the normal vector of obj.
