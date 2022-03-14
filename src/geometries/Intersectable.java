@@ -5,7 +5,7 @@ import primitives.*;
 import java.util.List;
 
 /**
- * interface
+ * interface Intersectable
  *
  * @author
  *
