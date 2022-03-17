@@ -23,19 +23,15 @@ class PlaneTest {
 
         // =============== Boundary Values Tests ==================
 
-        // TC01: First and second points are the same
-        try {
-            Plane plane = new Plane(new Point(1, 2, 3), new Point(1, 2, 3), new Point(3, 6, 9));
-            fail("ERROR: Two points are the same point, exception was not thrown");
-        } catch (Exception e) {
-        }
+        // Test for 2 similar points
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(1, 2, 3), new Point(1, 2, 3), new Point(0, 0, 0))
+                ,"Constructed a Plane with same points not valid");
 
-        // TC02: The three points are on the same line
-        try {
-            Plane plane = new Plane(new Point(1, 2, 3), new Point(2, 4, 6), new Point(3, 6, 9));
-            fail("ERROR: The points are on the same line, exception was not thrown");
-        } catch (Exception e) {
-        }
+        // Check for 3 points on one straight line
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(1, 1, 1), new Point(2, 2, 2), new Point(3, 3, 3))
+                ,"Constructed a Plane with points on one straight line is not valid");
     }
 
     /**

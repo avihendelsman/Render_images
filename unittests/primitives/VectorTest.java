@@ -1,5 +1,6 @@
 package primitives;
 
+import geometries.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +20,7 @@ class VectorTest {
      */
     @Test
     void testConstructors() {
-        // =============== Boundary Values Test ==================
+        // =============== Boundary Values Tests ==================
 
         // test zero vector for ctor get 3 doubles
         assertThrows(IllegalArgumentException.class, () -> new Vector(0, 0, 0),

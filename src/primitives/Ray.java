@@ -42,6 +42,17 @@ public class Ray {
         return p0.equals(other.p0) && dir.equals(other.dir);
     }
 
+    /**
+     * return - cross point with the geometry body by getting the length
+     * from the start of the ray
+     * @param t length from the start of the ray
+     * @return point on the ray by get length from the start of the ray
+     *
+     */
+    public Point getPoint(double t) {
+        return getP0().add(getDir().scale(t));
+    }
+
     @Override
     public String toString(){
         return "Ray: " + "/\nthe Point is: " + p0 + "\nthe normal vector is: " + dir;
