@@ -25,6 +25,14 @@ public class Point {
     }
 
     /**
+     * get func for coordinate x
+     * @return coordinate x
+     */
+    public double getX(){
+        return xyz.d1;
+    }
+
+    /**
      * Subtraction between points.
      * @param p2 point p2
      * @return Vector who made as a result of subtracting 2 points.
