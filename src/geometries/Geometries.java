@@ -37,16 +37,17 @@ public class Geometries implements Intersectable {
 
     @Override
     public List<Point> findIntsersections(Ray ray){
-        List<Point> points = null;
-        if(geometriesBodies != null) {
-            for (Intersectable body: geometriesBodies) {
-                List<Point> result = body.findIntsersections(ray);
-                if(result != null){
-                    if(points == null)
-                        points = new LinkedList<Point>(result);
-                    else
-                        points.addAll(result);
-                }
+        if (geometriesBodies.isEmpty()) // In case the collection is empty
+            return null;
+
+        List<Point> points = null, result;
+        for (Intersectable body: geometriesBodies) {
+            result = body.findIntsersections(ray);
+            if(result != null){
+                if(points == null)
+                    points = new LinkedList<Point>(result);
+                else
+                    points.addAll(result);
             }
         }
         return points;
