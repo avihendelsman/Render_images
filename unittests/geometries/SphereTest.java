@@ -114,6 +114,7 @@ class SphereTest {
                 ,"Ray's line out of sphere");
 
         // **** Group: Ray's line is tangent to the sphere (all tests 0 points)
+
         // TC19: Ray starts before the tangent point
         assertNull(sphere.findIntsersections(new Ray(new Point(0.8, 1.1, 0), new Vector(-4, -3, 0)))
                 ,"Ray's line out of sphere");
@@ -127,6 +128,7 @@ class SphereTest {
                 ,"Ray's line out of sphere");
 
         // **** Group: Special cases
+
         // TC19: Ray's line is outside, ray is orthogonal to ray start to sphere's
         // center line
         assertNull(sphere.findIntsersections(new Ray(new Point(0, 1, 0), new Vector(4, 3, 0)))

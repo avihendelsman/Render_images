@@ -51,10 +51,6 @@ public class Triangle extends Polygon {
             LinkedList<Point> result = new LinkedList<Point>();
             result.add(resultPoint.get(0));
             return result;
-        //} else if (t1 < 0 && t2 < 0 && t3 < 0) { // In case the all scalars are in the same sign, the point is in the triangle
-        //    LinkedList<Point> result = new LinkedList<Point>();
-        //    result.add(resultPoint.get(0));
-        //    return result;
         } else
             return null;	//If the scalars are in a different sign
     }

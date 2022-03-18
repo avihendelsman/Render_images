@@ -58,7 +58,7 @@ class TriangleTest {
 
         // =============== Boundary Values Tests ==================
 
-        // ***** (the ray begins "before" the plane)
+        // *****
 
         // TC21: In vertex
         assertNull(tr.findIntsersections(new Ray(new Point(-1, -2, -1), new Vector(1, 2, 2)))
