@@ -33,6 +33,22 @@ public class Point {
     }
 
     /**
+     * get func for coordinate y
+     * @return coordinate y
+     */
+    public double getY(){
+        return xyz.d2;
+    }
+
+    /**
+     * get func for coordinate z
+     * @return coordinate z
+     */
+    public double getZ(){
+        return xyz.d3;
+    }
+
+    /**
      * Subtraction between points.
      * @param p2 point p2
      * @return Vector who made as a result of subtracting 2 points.
