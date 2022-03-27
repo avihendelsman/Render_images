@@ -14,7 +14,7 @@ class CameraTest {
     static final Point ZERO_POINT = new Point(0, 0, 0);
 
     /**
-     * Test method for
+     * Test method for constructRayThroughPixel.
      *
      */
     @Test

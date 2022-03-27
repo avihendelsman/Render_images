@@ -105,8 +105,6 @@ public class Camera {
         return this;
     }
 
-
-
     /**
      * Calculates the ray that goes through the middle of a pixel i,j on the view
      * plane
@@ -142,6 +140,7 @@ public class Camera {
             pIJ = pIJ.add(vUp.scale(yi));
 
         Vector vIJ = pIJ.subtract(this.p0);
+
         return new Ray(p0, vIJ);
     }
 }
