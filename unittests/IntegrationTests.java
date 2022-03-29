@@ -10,7 +10,6 @@ import renderer.Camera;
 
 import geometries.*;
 import primitives.*;
-import renderer.Camera;
 
 /**
  * @author 97253 Integration tests unit
