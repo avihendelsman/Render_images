@@ -105,6 +105,7 @@ public class Camera {
         return this;
     }
 
+
     /**
      * Calculates the ray that goes through the middle of a pixel i,j on the view
      * plane
