@@ -129,8 +129,8 @@ public class Camera {
         }
         */
         // Pixel[i,j] center
-        double yi = alignZero(-(i - (nY - 1) / 2) * Ry);
-        double xj = alignZero((j - (nX - 1) / 2) * Rx);
+        double yi = alignZero(-(i - (nY - 1) / 2.0) * Ry);
+        double xj = alignZero((j - (nX - 1) / 2.0) * Rx);
 
         Point pIJ = pC;
 
