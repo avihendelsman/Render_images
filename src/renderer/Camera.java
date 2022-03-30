@@ -124,11 +124,6 @@ public class Camera {
         double Ry = height / nY;
         double Rx = width / nX;
 
-        /**
-        if (nX % 2 == 0 || nY % 2 == 0) {    // In case the number of columns or rows is even, it moves the Pceneter to the (0,0) pixel
-            pC = new Point(pC.getX() - Rx / 2, pC.getY() - Ry / 2, pC.getZ());
-        }
-        */
         // Pixel[i,j] center
         double yi = alignZero(-(i - (nY - 1) / 2.0) * Ry);
         double xj = alignZero((j - (nX - 1) / 2.0) * Rx);
