@@ -31,12 +31,11 @@ public class Scene {
 
     /**
      *
-     * @param color
-     * @param Ka
+     * @param ambientLight
      * @return The scene object (this)
      */
-    public Scene setAmbientLight(Color color,Double3 Ka) {
-        this.ambientLight = new AmbientLight(color,Ka);
+    public Scene setAmbientLight(AmbientLight ambientLight) {
+        this.ambientLight = ambientLight;
         return this;
     }
 

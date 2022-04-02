@@ -2,6 +2,8 @@ package renderer;
 
 import primitives.*;
 
+import java.util.MissingResourceException;
+
 import static primitives.Util.*;
 
 public class Camera {
@@ -12,7 +14,7 @@ public class Camera {
     private double height;
     private double width;
     private double distance;
-    private ImageWriter iW;
+    private ImageWriter imageWriter;
     private RayTracerBase rayTracerBase;
     /**
      * @return the p0
@@ -109,23 +111,80 @@ public class Camera {
     /**
      * set the iW parm
      */
-    public Camera setIW(ImageWriter iW){
-        this.iW=iW;
+    public Camera setImageWriter(ImageWriter imageWriter){
+        this.imageWriter=imageWriter;
         return this;
     }
 
     /**
      * set the rayTracerBase parm
      */
-    public Camera setIW(RayTracerBase rayTracerBase){
+    public Camera setRayTracer(RayTracerBase rayTracerBase){
         this.rayTracerBase = rayTracerBase;
         return this;
     }
 
     /**
+     * Method for creating rays and for every ray gets the color for the pixel
+     */
+    public void renderImage() {
+        // In case that not all of the fields are filled
+        if (imageWriter == null || rayTracerBase == null)
+            throw new MissingResourceException("Missing", "resource", "exception");
+
+        // The nested loop finds and creates a ray for each pixels, finds its color and
+        // writes it to the image pixles
+        int nY = this.imageWriter.getNy();
+        int nX = this.imageWriter.getNx();
+        Ray ray;
+        for (int j = 0; j < nY; j++) {
+            for (int i = 0; i < nX; i++) {
+                ray = constructRayThroughPixel(nX, nY, j, i); // For each pixel calls
+
+                // "constructRayThroughPixel" function
+                imageWriter.writePixel(i, j, castRay(ray)); // Traces the color of the ray and writes it
+                // to the image
+            }
+        }
+
+    }
+
+    /**
+     * castRay func
+     * @param ray
+     * @return
+     */
+    private Color castRay(Ray ray){
+        return rayTracerBase.traceRay(ray);
+    }
+
+    /**
+     * Method for coloring only the grid lines
+     *
+     * @param interval
+     * @param color
+     */
+    public void printGrid(int interval, Color color) {
+        if (imageWriter == null) // In case the image writer is empty
+            throw new MissingResourceException("Missing", "resource", "for an imageWriter");
+        for (int i = 0; i < imageWriter.getNx(); i++)	// The loop goes through all the pixels
+            for (int j = 0; j < imageWriter.getNy(); j++)
+                if (i % interval == 0 && i != 0 || j % interval == 0 && j != 0) // In case we are in the grid lines
+                    imageWriter.writePixel(i, j, color);
+    }
+
+    /**
+     * Method for start the "writeToImage()" in imageWriter object
+     */
+    public void writeToImage() {
+        if (imageWriter == null)
+            throw new MissingResourceException("Missing", "resource", "for an imageWriter");
+        imageWriter.writeToImage();
+    }
+
+    /**
      * Calculates the ray that goes through the middle of a pixel i,j on the view
      * plane
-     *
      *
      * @param nX
      * @param nY
