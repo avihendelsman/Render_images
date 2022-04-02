@@ -14,7 +14,7 @@ class PointTest {
      */
     @Test
     void testSubtract() {
-        // ============ Equivalence Partitions Tests ==============
+        // ============ Equivalence Partitions Tests  ==============
         // TC01: Point subtraction wrong calculation
         assertEquals(new Vector(1, 1, 1), new Point(2, 3, 4).subtract(new Point(1, 2, 3)), "Points subtraction does not work correctly");
     }
