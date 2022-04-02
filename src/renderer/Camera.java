@@ -12,7 +12,8 @@ public class Camera {
     private double height;
     private double width;
     private double distance;
-
+    private ImageWriter iW;
+    private RayTracerBase rayTracerBase;
     /**
      * @return the p0
      */
@@ -105,6 +106,21 @@ public class Camera {
         return this;
     }
 
+    /**
+     * set the iW parm
+     */
+    public Camera setIW(ImageWriter iW){
+        this.iW=iW;
+        return this;
+    }
+
+    /**
+     * set the rayTracerBase parm
+     */
+    public Camera setIW(RayTracerBase rayTracerBase){
+        this.rayTracerBase = rayTracerBase;
+        return this;
+    }
 
     /**
      * Calculates the ray that goes through the middle of a pixel i,j on the view

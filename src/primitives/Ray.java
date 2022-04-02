@@ -1,5 +1,7 @@
 package primitives;
 
+import java.util.List;
+
 /**
  * The class defines a primitive type - "Ray".
  */
@@ -33,6 +35,22 @@ public class Ray {
         return dir;
     }
 
+    /**
+     *
+     * @param listPoint
+     * @return The closest point to the began of the ray
+     */
+    public Point findClosestPoint(List<Point> listPoint) {
+
+        if (listPoint == null) //In case of an empty list
+            return null;
+        Point closePoint = listPoint.get(0);	//Save the first point in the list
+        for (Point p : listPoint) {
+            if (closePoint.distance(p0) > p.distance(p0))	//In case the distance of closes point is bigger than the p point
+                closePoint = p;
+        }
+        return closePoint;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
