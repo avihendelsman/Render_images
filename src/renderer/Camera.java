@@ -110,6 +110,7 @@ public class Camera {
      * Calculates the ray that goes through the middle of a pixel i,j on the view
      * plane
      *
+     *
      * @param nX
      * @param nY
      * @param j
