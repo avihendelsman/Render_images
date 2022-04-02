@@ -19,9 +19,9 @@ public class ImageWriterTest {
         for (int i = 0; i < 800; i++)
             for (int j = 0; j < 500; j++)
                 if (i % 50 == 0 && i != 0 || j % 50 == 0 && j != 0)
-                    image.writePixel(i, j, new Color(125, 0, 70));
+                    image.writePixel(i, j, new Color(255, 0, 0));
                 else
-                    image.writePixel(i, j, new Color(0, 80, 100));
+                    image.writePixel(i, j, new Color(255, 255, 0));
 
         image.writeToImage();
     }
