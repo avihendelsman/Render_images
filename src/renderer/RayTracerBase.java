@@ -21,7 +21,4 @@ public abstract class RayTracerBase {
      * abstract method who gets ray and return the color
      */
     public abstract Color traceRay(Ray ray);
-
-
-
 }

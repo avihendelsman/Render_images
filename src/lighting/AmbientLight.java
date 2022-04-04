@@ -1,6 +1,9 @@
 package lighting;
 import primitives.*;
 
+/**
+ * AmbientLight class
+ */
 public class AmbientLight {
     private Color intensity;
 
@@ -27,9 +30,6 @@ public class AmbientLight {
      * @return The ambient light intensity
      */
     public Color getIntensity() {
-
         return intensity;
     }
-
-
 }

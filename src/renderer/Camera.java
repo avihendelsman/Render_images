@@ -81,6 +81,41 @@ public class Camera {
     }
 
     /**
+     * Calculates the ray that goes through the middle of a pixel i,j on the view
+     * plane
+     *
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @return The ray that goes through the middle of a pixel i,j on the view plane
+     */
+    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+        // Image center:
+        Point pC = p0.add(vTo.scale(this.distance));
+
+        // Ratio:
+        double Ry = height / nY;
+        double Rx = width / nX;
+
+        // Pixel[i,j] center
+        double yi = alignZero(-(i - (nY - 1) / 2.0) * Ry);
+        double xj = alignZero((j - (nX - 1) / 2.0) * Rx);
+
+        Point pIJ = pC;
+
+        // To avoid a zero vector exception
+        if (xj != 0)
+            pIJ = pIJ.add(vRight.scale(xj));
+        if (yi != 0)
+            pIJ = pIJ.add(vUp.scale(yi));
+
+        Vector vIJ = pIJ.subtract(this.p0);
+
+        return new Ray(p0, vIJ);
+    }
+
+    /**
      * A setter for the size of the view plane
      *
      * @param width
@@ -137,25 +172,19 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
         Ray ray;
-        for (int j = 0; j < nY; j++) {
-            for (int i = 0; i < nX; i++) {
-                ray = constructRayThroughPixel(nX, nY, j, i); // For each pixel calls
-
-                // "constructRayThroughPixel" function
-                imageWriter.writePixel(i, j, castRay(ray)); // Traces the color of the ray and writes it
-                // to the image
+        for (int i = 0; i < nX; i++) {
+            for (int j = 0; j < nY; j++) {
+                imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
             }
         }
-
     }
 
     /**
-     * castRay func
-     * @param ray
-     * @return
+     * The function calculates the ray that hits the pixel and returns the color
+     * @return Color
      */
-    private Color castRay(Ray ray){
-        return rayTracerBase.traceRay(ray);
+    private Color castRay(int nX, int nY, int j, int i){
+        return rayTracerBase.traceRay(constructRayThroughPixel(nX, nY, j, i));
     }
 
     /**
@@ -180,40 +209,5 @@ public class Camera {
         if (imageWriter == null)
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
         imageWriter.writeToImage();
-    }
-
-    /**
-     * Calculates the ray that goes through the middle of a pixel i,j on the view
-     * plane
-     *
-     * @param nX
-     * @param nY
-     * @param j
-     * @param i
-     * @return The ray that goes through the middle of a pixel i,j on the view plane
-     */
-    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        // Image center:
-        Point pC = p0.add(vTo.scale(this.distance));
-
-        // Ratio:
-        double Ry = height / nY;
-        double Rx = width / nX;
-
-        // Pixel[i,j] center
-        double yi = alignZero(-(i - (nY - 1) / 2.0) * Ry);
-        double xj = alignZero((j - (nX - 1) / 2.0) * Rx);
-
-        Point pIJ = pC;
-
-        // To avoid a zero vector exception
-        if (xj != 0)
-            pIJ = pIJ.add(vRight.scale(xj));
-        if (yi != 0)
-            pIJ = pIJ.add(vUp.scale(yi));
-
-        Vector vIJ = pIJ.subtract(this.p0);
-
-        return new Ray(p0, vIJ);
     }
 }

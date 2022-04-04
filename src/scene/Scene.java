@@ -4,6 +4,9 @@ import primitives.*;
 import lighting.*;
 import geometries.*;
 
+/**
+ * Scene class
+ */
 public class Scene {
 
     public String name;
@@ -21,6 +24,7 @@ public class Scene {
     }
 
     /**
+     * set Background field
      * @param background
      * @return The scene object (this)
      */
@@ -30,7 +34,7 @@ public class Scene {
     }
 
     /**
-     *
+     * set AmbientLight field
      * @param ambientLight
      * @return The scene object (this)
      */
@@ -40,7 +44,7 @@ public class Scene {
     }
 
     /**
-     *
+     * set geometries field
      * @param geo
      * @return The scene object (this)
      */
@@ -48,5 +52,4 @@ public class Scene {
         this.geometries = geo;
         return this;
     }
-
 }
