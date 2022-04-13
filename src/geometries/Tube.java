@@ -7,7 +7,7 @@ import java.util.List;
 /**
  *  The class defines a geometries type - "Tube".
  */
-public class Tube implements Geometry{
+public class Tube extends Geometry{
     protected Ray axisRay;
     protected double radius;
 

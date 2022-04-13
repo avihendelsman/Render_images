@@ -10,7 +10,7 @@ import static primitives.Util.*;
 /**
  * The class defines a geometries type - "Sphere".
  */
-public class Sphere implements Geometry{
+public class Sphere extends Geometry{
     private Point center;
     private double radius;
 

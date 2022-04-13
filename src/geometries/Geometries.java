@@ -6,7 +6,7 @@ import primitives.Ray;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
     private List<Intersectable> geometriesBodies;
 
     /**
@@ -33,7 +33,6 @@ public class Geometries implements Intersectable {
     {
         geometriesBodies.addAll(List.of(geometries));
     }
-
 
     @Override
     public List<Point> findIntsersections(Ray ray){
