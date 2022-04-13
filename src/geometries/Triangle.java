@@ -28,8 +28,8 @@ public class Triangle extends Polygon {
     }
 
     @Override
-    public List<Point> findIntsersections(Ray ray) {
-        List<Point> resultPoint = plane.findIntsersections(ray);
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> resultPoint = plane.findGeoIntersectionsHelper(ray);
 
         if (resultPoint == null) // In case there is no intersection with the plane return null
             return null;
@@ -48,8 +48,8 @@ public class Triangle extends Polygon {
             return null; // that mean the point is not inside the triangle
 
         if ((t1 > 0 && t2 > 0 && t3 > 0) || (t1 < 0 && t2 < 0 && t3 < 0)) { // In case the all scalars are in the same sign, the point is in the triangle
-            LinkedList<Point> result = new LinkedList<Point>();
-            result.add(resultPoint.get(0));
+            LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
+            result.add(new GeoPoint(this, resultPoint.get(0).point)); //to return this of Triangle
             return result;
         } else
             return null;	//If the scalars are in a different sign

@@ -35,16 +35,16 @@ public class Geometries extends Intersectable {
     }
 
     @Override
-    public List<Point> findIntsersections(Ray ray){
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
         if (geometriesBodies.isEmpty()) // In case the collection is empty
             return null;
 
-        List<Point> points = null, result;
+        List<GeoPoint> points = null, result;
         for (Intersectable body: geometriesBodies) {
-            result = body.findIntsersections(ray);
+            result = body.findGeoIntersectionsHelper(ray);
             if(result != null){
                 if(points == null)
-                    points = new LinkedList<Point>(result);
+                    points = new LinkedList<GeoPoint>(result);
                 else
                     points.addAll(result);
             }

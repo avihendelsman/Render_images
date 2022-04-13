@@ -44,14 +44,14 @@ public class Sphere extends Geometry{
     }
 
     @Override
-    public List<Point> findIntsersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
         double r = this.radius;
 
         // Special case: if point p0 == center, that mean that all we need to calculate
         // is the radios mult scalar with the direction, and add p0
         if (center.equals(ray.getP0())) {
-            LinkedList<Point> result = new LinkedList<Point>();
-            result.add(ray.getPoint(r));
+            LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
+            result.add(new GeoPoint(this, ray.getPoint(r)));
             return result;
         }
 
@@ -67,14 +67,14 @@ public class Sphere extends Geometry{
         double t2 = tm - th;
 
         if(alignZero(t1) > 0 || alignZero(t2) > 0){
-            LinkedList<Point> result = new LinkedList<Point>();
+            LinkedList<GeoPoint> result = new LinkedList<GeoPoint>();
             if(alignZero(t1) > 0){
                 Point p1 = ray.getPoint(t1);
-                result.add(p1);
+                result.add(new GeoPoint(this, p1));
             }
             if(alignZero(t2) > 0){
                 Point p2 = ray.getPoint(t2);
-                result.add(p2);
+                result.add(new GeoPoint(this, p2));
             }
             return result;
         }

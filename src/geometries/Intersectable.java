@@ -18,7 +18,11 @@ public abstract class Intersectable {
      *
      * @return List<Point> - list of intersections in geometric object
      */
-    public abstract List<Point> findIntsersections(Ray ray);
+    public List<Point> findIntsersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).toList();
+    }
 
     /**
      * static class GeoPoint

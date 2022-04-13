@@ -76,25 +76,6 @@ public class Plane extends Geometry{
     }
 
     @Override
-    public List<Point> findIntsersections(Ray ray) {
-        // In case there are zeroes in denominator and numerator
-        // For example when ray is parallel to the plane
-        if (ray.getP0().equals(p0) || isZero(this.normal.dotProduct(ray.getDir()))
-                || isZero(this.normal.dotProduct(p0.subtract(ray.getP0()))))
-            return null;
-
-        double t = (this.normal.dotProduct(p0.subtract(ray.getP0()))) / (this.normal.dotProduct(ray.getDir()));
-        if (t < 0) // In case there is no intersection with the plane return null
-            return null;
-
-        //In case there is intersection with the plane return the point
-        Point p = ray.getPoint(t);
-        LinkedList<Point> result = new LinkedList<Point>();
-        result.add(p);
-        return result;
-    }
-
-    @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         // In case there are zeroes in denominator and numerator
         // For example when ray is parallel to the plane
