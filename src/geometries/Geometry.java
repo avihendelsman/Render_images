@@ -8,9 +8,9 @@ import primitives.*;
 public abstract class Geometry extends Intersectable {
 
     protected Color emission = Color.BLACK;
-
+    private Material material = new Material();
     /**
-     *
+     * getEmission
      * @return emission
      */
     public Color getEmission(){
@@ -18,13 +18,30 @@ public abstract class Geometry extends Intersectable {
     }
 
     /**
-     *
+     * setEmission
      * @return emission
      */
     public Geometry setEmission(Color emission){
         this.emission = emission;
         return this;
     }
+    /**
+     * getMaterial
+     * @return emission
+     */
+    public Material getMaterial(){
+        return material;
+    }
+
+    /**
+     * setEMaterial
+     * @return emission
+     */
+    public Geometry setMaterial(Material material){
+        this.material = material;
+        return this;
+    }
+
 
     /**
      * abstract func who return the normal vector of obj.
