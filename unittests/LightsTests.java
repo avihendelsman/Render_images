@@ -170,6 +170,8 @@ public class LightsTests {
         camera2.writeToImage(); //
     }
 
+
+
     /**
      * Produce a picture of a sphere lighted by a narrow spot light
 
