@@ -131,6 +131,7 @@ public class LightsTests {
                 .renderImage();//
         camera2.writeToImage(); //
     }
+
     /**
      * Produce a picture of a sphere lighted by all three light source types
      */
@@ -149,7 +150,6 @@ public class LightsTests {
                 .renderImage();//
         camera1.writeToImage(); //
     }
-
 
     /**
      * Produce a picture of a two triangles lighted by all three light source types
