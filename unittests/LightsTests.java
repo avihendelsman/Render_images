@@ -144,10 +144,10 @@ public class LightsTests {
 
 
         ImageWriter imageWriter = new ImageWriter("sphereAllLights", 500, 500);
-        camera2.setImageWriter(imageWriter) //
+        camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
                 .renderImage();//
-        camera2.writeToImage(); //
+        camera1.writeToImage(); //
     }
 
 
@@ -161,7 +161,7 @@ public class LightsTests {
         scene2.lights.add(new DirectionalLight(new Color(30, 150, 90), new Vector(0, 20, -10))); // Effects the both triangles
         scene2.lights.add(new PointLight(new Color(400, 100, 0), new Point(50, -20, -90), 1, 0.00005, 0.000003)); //  Orange - hits up and right sides
         scene2.lights.add(new SpotLight(new Color(20, 70, 300), new Point(10, -10, -50), new Vector(1, -1, -1), 1,
-                0.0001, 0.000005)); // The blue - hits the center
+                0.1, 0.5)); // The blue - hits the center
 
         ImageWriter imageWriter = new ImageWriter("trianglesAllLights", 500, 500);
         camera2.setImageWriter(imageWriter) //
