@@ -56,7 +56,8 @@ public class RayTracerBasic extends RayTracerBase {
             return Color.BLACK;
         int nShininess = intersection.geometry.getMaterial().nShininess;
 
-        Double3 kd = intersection.geometry.getMaterial().kD, ks = intersection.geometry.getMaterial().kS;
+        Double3 kd = intersection.geometry.getMaterial().kD;
+        Double3 ks = intersection.geometry.getMaterial().kS;
         Color color = Color.BLACK;
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
