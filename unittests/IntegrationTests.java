@@ -17,7 +17,7 @@ import primitives.*;
 public class IntegrationTests {
 
     /**
-     * Tests the camera rays and  sphere intersections
+     * Tests the camera rays and sphere intersections
      */
     @Test
     public void testCameraAndSphere() {
