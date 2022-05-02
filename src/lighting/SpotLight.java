@@ -5,8 +5,15 @@ import primitives.*;
 
 import static primitives.Util.alignZero;
 
+/**
+ * class SpotLight
+ */
 public class SpotLight extends PointLight{
+    // the direction of this spot
     private Vector direction;
+
+    // the hwo narrow the beam will be
+    double beam = 1;
 
     /**
      *
@@ -22,14 +29,20 @@ public class SpotLight extends PointLight{
         direction = dir.normalize();
     }
 
+    /**
+     * @param beam the beam to set
+     */
+    public SpotLight setNarrowBeam(double beam) {
+        this.beam = beam;
+        return this;
+    }
+
     @Override
     public Color getIntensity(Point p) {
-        Vector l = super.getL(p);
-
-        if (alignZero(direction.dotProduct(l)) <= 0) //In case the dir * l return zero or negative number
+        double cos = alignZero(getL(p).dotProduct(direction));
+        if (cos <= 0)
             return Color.BLACK;
-
-        return super.getIntensity(p).scale(direction.dotProduct(l));
+        return super.getIntensity(p).scale(Math.pow(cos, beam));
     }
 
     @Override
