@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import geometries.*;
 import primitives.*;
 
+import java.util.List;
+
 /**
  * Testing Polygons
  * 
@@ -76,5 +78,39 @@ public class PolygonTests {
 		Polygon pl = new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1));
 		double sqrt3 = Math.sqrt(1d / 3);
 		assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point(0, 0, 1)), "Bad normal to trinagle");
+	}
+
+	@Test
+	public void testFindIntersections() {
+		//square
+		Polygon square = new Polygon(new Point(0, 0, 0), new Point(2, 0, 0),
+				new Point(2, 2, 0),new Point(0, 2, 0));
+
+		// ============ Equivalence Partitions Tests ==============
+
+		// TC01 Inside square(1 point)
+		Point p1 = new Point(1, 1, 0);
+		List<Point> result = square.findIntsersections(new Ray(new Point(0, 0, 1),
+				new Vector(1, 1, -1)));
+		assertEquals( 1, result.size(),"Wrong number of points");
+		assertEquals(List.of(p1), result,"Ray crosses square");
+
+		// TC02 Outside against edge(0 points)
+		assertNull(square.findIntsersections(new Ray(new Point(0, 0, 1), new Vector(3, 3, -1)))
+		,"Outside against edge");
+
+		// TC03 Outside against vertex(0 points)
+		assertNull(square.findIntsersections(new Ray(new Point(0, 0, 1), new Vector(1, 3, -1))),"Outside against vertex");
+
+		// =============== Boundary Values Tests ==================
+
+		// TC04 On edge
+		assertNull(square.findIntsersections(new Ray(new Point(0, 0, 1), new Vector(2, 0, -1))),"Outside against vertex");
+
+		// TC05 In vertex
+		assertNull(square.findIntsersections(new Ray(new Point(0, 0, 1), new Vector(1, 0, -1))),"Outside against vertex");
+
+		// TC06 On edge's continuation
+		assertNull(square.findIntsersections(new Ray(new Point(0, 0, 1), new Vector(3, 0, -1))),"Outside against vertex");
 	}
 }
