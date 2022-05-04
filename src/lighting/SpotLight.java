@@ -42,6 +42,7 @@ public class SpotLight extends PointLight{
         double cos = alignZero(getL(p).dotProduct(direction));
         if (cos <= 0)
             return Color.BLACK;
+
         return super.getIntensity(p).scale(Math.pow(cos, beam));
     }
 

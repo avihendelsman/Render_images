@@ -5,12 +5,16 @@ import geometries.Intersectable;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
+import static primitives.Util.alignZero;
+
 /**
  * The class defines a primitive type - "Ray".
  */
 public class Ray {
     private final Point p0;
     private final Vector dir;
+
+    private static final double DELTA = 0.1;
 
     /**
      * A ctor that gets 2 parameters(Point type and Vector type).
@@ -20,6 +24,18 @@ public class Ray {
     public Ray(Point p, Vector vec) {
         p0 = p;
         dir = vec.normalize();
+    }
+
+    /**
+     * Constructor calculate the movement normal by delta
+     * @param vecDir
+     * @param p
+     * @param n
+     */
+    public Ray(Vector vecDir, Point p , Vector n) {
+        dir = vecDir;
+        Vector delta = n.scale(alignZero(n.dotProduct(dir) > 0 ? DELTA : -DELTA));
+        p0 = p.add(delta);
     }
 
     /**

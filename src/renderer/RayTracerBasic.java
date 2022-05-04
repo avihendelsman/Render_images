@@ -11,10 +11,17 @@ import geometries.Intersectable.GeoPoint;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase {
+
     /**
      * Head of rays movement const
      */
     private static final double DELTA = 0.1;
+
+    /**
+     * Consts for stop condition in rec func
+     */
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
 
     /**
      * @param sc
@@ -44,6 +51,61 @@ public class RayTracerBasic extends RayTracerBase {
      */
     public Color calcColor(GeoPoint point, Ray ray) {
         return scene.ambientLight.getIntensity().add(point.geometry.getEmission()).add(calcLocalEffects(point, ray));
+    }
+
+    /**
+     * calc Global Effects
+     * @param geopoint
+     * @param ray
+     * @param level
+     * @param k
+     * @return The color with the global effects
+     */
+    /**
+    private Color calcGlobalEffects(GeoPoint geopoint, Ray ray, int level, double k) {
+        Color color = Color.BLACK;
+        Material material = geopoint.geometry.getMaterial();
+        Double3 kr = material.kR, kkr = k * kr;
+        if (kkr > MIN_CALC_COLOR_K) {
+            Ray reflectedRay = constructReflectedRay(geopoint.geometry.getNormal(geopoint.point), geopoint.point, ray);
+            GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
+            if (reflectedPoint != null)
+                color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+        }
+
+        Double3 kt = material.kT, kkt = k * kt;
+        if (kkt > MIN_CALC_COLOR_K) {
+            Ray refractedRay = constructRefractedRay(geopoint.geometry.getNormal(ray.getP0()), geopoint.point, ray);
+            GeoPoint refractedPoint = findClosestIntersection(refractedRay);
+            if (refractedPoint != null)
+                color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+        }
+        return color;
+    }
+    /*
+
+    /**
+     * Calculate the reflection ray
+     * @param n
+     * @param point
+     * @param inRay
+     * @return The new ray after the reflection calculate
+     */
+    private Ray constructReflectedRay(Vector n, Point point, Ray inRay) {
+        Vector v = inRay.getDir();
+        Vector r = v.subtract(n.scale(alignZero(2 * (n.dotProduct(v)))));
+        return new Ray(r.normalize(), point, n);
+    }
+
+    /**
+     * Calculate the refracted ray
+     * @param n
+     * @param point
+     * @param inRay
+     * @return The new ray refracted ray
+     */
+    private Ray constructRefractedRay(Vector n, Point point, Ray inRay) {
+        return new Ray(inRay.getDir(), point, n);
     }
 
     /**

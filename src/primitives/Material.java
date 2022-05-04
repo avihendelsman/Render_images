@@ -5,6 +5,7 @@ package primitives;
  */
 public class Material {
     public Double3 kD = new Double3(0), kS = new Double3(0);
+    public Double3 kT = new Double3(0), kR = new Double3(0);
     public int nShininess = 0;
 
     /**
@@ -47,7 +48,32 @@ public class Material {
         return this;
     }
 
-        public Material setNShininess(int nShininess){
+    /**
+     * set KT
+     * @param kT
+     * @return
+     */
+    public Material setkT(Double3 kT){
+        this.kT = kT;
+        return this;
+    }
+
+    /**
+     * set KR
+     * @param kR
+     * @return
+     */
+    public Material setKR(Double3 kR){
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * set NShininess
+     * @param nShininess
+     * @return
+     */
+    public Material setNShininess(int nShininess){
         this.nShininess = nShininess;
         return this;
     }
