@@ -33,7 +33,7 @@ public class Ray {
      * @param n
      */
     public Ray(Vector vecDir, Point p , Vector n) {
-        dir = vecDir;
+        dir = vecDir.normalize();
         Vector delta = n.scale(alignZero(n.dotProduct(dir) > 0 ? DELTA : -DELTA));
         p0 = p.add(delta);
     }
