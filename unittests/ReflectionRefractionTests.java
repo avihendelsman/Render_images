@@ -108,6 +108,7 @@ public class ReflectionRefractionTests {
 		camera.writeToImage();
 	}
 
+
 	/**
 	 * Produce a picture of a pyramid lighted by a spot light with a mirror effects
 	 */
