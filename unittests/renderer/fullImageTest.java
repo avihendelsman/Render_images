@@ -13,13 +13,13 @@ import renderer.Camera;
 import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 
+import renderer.RayTracerSuperSampling;
 import scene.Scene;
 
 
 /**
  * test the all integration of rendering image
  *
- * @author moshe
  *
  */
 public class fullImageTest {
@@ -103,7 +103,7 @@ public class fullImageTest {
         scene.lights.add(new SpotLight(new Color(800, 400, 400), new Point(80, -60, 70), new Vector(-5, -2, -1),1,0,0) //
                 .setNarrowBeam(4).setKL(0.001).setKQ(0.0000025));
 
-        camera.setImageWriter(new ImageWriter("fullImageSS1", 500, 500)) //
+        camera.setImageWriter(new ImageWriter("fullImageSS1", 1000, 1000)) //
                 //.setRayTracer(new RayTracerSuperSampling(scene, camera, 2))
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
@@ -131,24 +131,11 @@ public class fullImageTest {
 
         ImageWriter imageWriter = new ImageWriter("final test", 600, 600);
 
-
-        cam.setImageWriter(new ImageWriter("fullImageSS1", 500, 500)) //???????????????
-                //.setRayTracer(new RayTracerSuperSampling(scene, camera, 2))
+        cam.setImageWriter(imageWriter) //
+                //.setRayTracer(new RayTracerSuperSampling(scene, cam, 2))
                 .setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         cam.writeToImage();
-
-        /*
-          Render render = new Render() //
-                .setImageWriter(imageWriter) //
-                .setCamera(cam) //
-                .setRayTracer(new RayTracerBasic(scene));
-
-        render.renderImage();
-        render.writeToImage();
-         */
-
     }
-
 }
 

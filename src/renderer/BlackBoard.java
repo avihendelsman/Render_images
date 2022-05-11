@@ -6,7 +6,6 @@ import java.util.LinkedList;
 /**
  * abstract Class for create BlackBoard of points
  *
- * @author David Ovits and Moshe David Levi
  */
 public abstract class BlackBoard {
 

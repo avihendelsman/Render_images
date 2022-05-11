@@ -13,7 +13,6 @@ import java.util.List;
  * Class RayTracerSuperSampling for calc color by ray from camera extends
  * RayTracerBasic and add depth of field effect by send ray beam to calc color
  *
- * @author David Ovits and Moshe David Levi
  */
 public class RayTracerSuperSampling extends RayTracerBasic {
 
