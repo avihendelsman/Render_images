@@ -16,6 +16,8 @@ public class Camera {
     private double distance;
     private ImageWriter imageWriter;
     private RayTracerBase rayTracerBase;
+    private double focalDistance = 0.0;
+    private double apertureRadius = 1.0;
     /**
      * @return the p0
      */
@@ -160,6 +162,49 @@ public class Camera {
     }
 
     /**
+     * set Aperture Radius to affect on depth of field
+     * (builder design pattern)
+     *
+     * @param apertureRadius
+     * @return this camera object
+     */
+    public Camera setApertureRadius(double apertureRadius) {
+        this.apertureRadius = apertureRadius;
+        return this;
+    }
+
+
+    /**
+     * set distance of Focal plane from View Plan
+     * (builder design pattern)
+     *
+     * @param focalDistance
+     * @return this camera object
+     */
+    public Camera setFpDistance(double focalDistance) {
+        this.focalDistance = focalDistance;
+        return this;
+    }
+
+    /**
+     * get distance of Focal plan from View Plan
+     *
+     * @return distance from view plan
+     */
+    public double getFpDistance() {
+        return focalDistance;
+    }
+
+    /**
+     * get radius of Aperture Radius
+     *
+     * @return radius
+     */
+    public double getApertureRadius() {
+        return apertureRadius;
+    }
+
+    /**
      * Method for creating rays and for every ray gets the color for the pixel
      */
     public void renderImage() {
@@ -210,4 +255,6 @@ public class Camera {
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
         imageWriter.writeToImage();
     }
+
+
 }
