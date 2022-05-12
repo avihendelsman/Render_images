@@ -104,8 +104,8 @@ public class fullImageTest {
                 .setNarrowBeam(4).setKL(0.001).setKQ(0.0000025));
 
         camera.setImageWriter(new ImageWriter("fullImageSS1", 1000, 1000)) //
-                //.setRayTracer(new RayTracerSuperSampling(scene, camera, 2))
-                .setRayTracer(new RayTracerBasic(scene)) //
+                .setRayTracer(new RayTracerSuperSampling(scene, camera, 10))
+                //.setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         camera.writeToImage();
     }

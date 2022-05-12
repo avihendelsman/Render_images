@@ -68,9 +68,6 @@ public class RayTracerSuperSampling extends RayTracerBasic {
         List<Ray> rayList = new LinkedList<>();
 
         for (Point pnt : pointList) {
-            //if (pnt.equals(ray.getP0()))
-            //	rayList.add(ray);
-            //else
             rayList.add(new Ray(pnt, targetPoint.subtract(pnt).normalize()));
         }
 

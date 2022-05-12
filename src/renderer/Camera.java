@@ -78,7 +78,6 @@ public class Camera {
         this.p0 = p0;
         this.vUp = vUp.normalize();
         this.vTo = vTo.normalize();
-        //this.vRight = vUp.crossProduct(vTo).normalize();
         this.vRight = vTo.crossProduct(vUp).normalize();
     }
 
@@ -216,7 +215,7 @@ public class Camera {
         // writes it to the image pixles
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
-        Ray ray;
+
         for (int i = 0; i < nX; i++) {
             for (int j = 0; j < nY; j++) {
                 imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
@@ -255,6 +254,5 @@ public class Camera {
             throw new MissingResourceException("Missing", "resource", "for an imageWriter");
         imageWriter.writeToImage();
     }
-
 
 }
