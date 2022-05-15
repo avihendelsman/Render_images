@@ -34,7 +34,7 @@ public class RayTracerSuperSampling extends RayTracerBasic {
         this.xyBeamSize = xyBeamSize;
 
         aperturePointList = BlackBoard.constructCircleBlackBorad(xyBeamSize, camera.getP0(), camera.getvUp(),
-                camera.getvRight(), 1/camera.getApertureRadius());
+                camera.getvRight(), camera.getApertureRadius());
         beamSize = aperturePointList.size();
     }
 

@@ -30,13 +30,7 @@ public class fullImageTest {
     @Test
     public void test() {
         Camera camera = new Camera(new Point(150, 0, 410), new Vector(-40, 0, -100), new Vector(0, 1, 0)) //
-                .setVPSize(200, 200).setVPDistance(300).setApertureRadius(0.2).setFpDistance(50);
-        // Camera camera = new Camera(new Point3D(400, 0, 1010), new Vector(-40, 0,
-        // -100), new Vector(0, 1, 0)) //
-        // .setVpSize(200, 200).setVpDistance(900);
-        // Camera camera = new Camera(new Point3D(0, 410, 0), new Vector(0, -1, 0), new
-        // Vector(0, 0, 1)) //
-        // .setVpSize(200, 200).setVpDistance(300);
+                .setVPSize(200, 200).setVPDistance(300).setApertureRadius(5).setFpDistance(50);
 
         List<Point> pl = List.of(new Point(150, 100, -50), new Point(150, -100, -50), new Point(-100, 100, -50),
                 new Point(-100, -100, -50), new Point(-100, 100, -40), new Point(-100, -100, -40),
@@ -54,7 +48,7 @@ public class fullImageTest {
         Material matSmallSphere = new Material().setKR(0.05).setKD(0.1).setKS(1).setNShininess(100);
         Material sphereMirror = new Material().setKR(0.4).setKD(0.3).setKS(1).setNShininess(50);
 
-        scene.geometries.add( //
+        scene.geometries.add(
                 new Triangle(pl.get(0), pl.get(1), pl.get(2)).setMaterial(mirror).setEmission(colMirror),
                 new Triangle(pl.get(1), pl.get(2), pl.get(3)).setMaterial(mirror).setEmission(colMirror),
                 new Triangle(pl.get(4), pl.get(6), pl.get(7)).setMaterial(mirror).setEmission(colMirror),
@@ -103,8 +97,8 @@ public class fullImageTest {
         scene.lights.add(new SpotLight(new Color(800, 400, 400), new Point(80, -60, 70), new Vector(-5, -2, -1),1,0,0) //
                 .setNarrowBeam(4).setKL(0.001).setKQ(0.0000025));
 
-        camera.setImageWriter(new ImageWriter("fullImageSS1", 1000, 1000)) //
-                .setRayTracer(new RayTracerSuperSampling(scene, camera, 10))
+        camera.setImageWriter(new ImageWriter("fullImageSS1", 1080, 1080)) //
+                .setRayTracer(new RayTracerSuperSampling(scene, camera, 15))
                 //.setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         camera.writeToImage();
