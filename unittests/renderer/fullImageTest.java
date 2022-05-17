@@ -32,6 +32,7 @@ public class fullImageTest {
         Camera camera = new Camera(new Point(150, 0, 410), new Vector(-40, 0, -100), new Vector(0, 1, 0)) //
                 .setVPSize(200, 200).setVPDistance(300).setApertureRadius(5).setFpDistance(50);
 
+
         List<Point> pl = List.of(new Point(150, 100, -50), new Point(150, -100, -50), new Point(-100, 100, -50),
                 new Point(-100, -100, -50), new Point(-100, 100, -40), new Point(-100, -100, -40),
                 new Point(-100, 100, 200), new Point(-100, -100, 200), new Point(0, -50, 60),
