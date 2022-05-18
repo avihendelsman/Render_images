@@ -11,6 +11,7 @@ import java.util.List;
  *
  */
 public abstract class Intersectable {
+    public Box box;
 
     /**
      * Finds intersections of a ray with geometric object and returns them as list of points
@@ -66,4 +67,9 @@ public abstract class Intersectable {
     }
 
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
+
+    /**
+     * Abstract method for creating box for each geometry
+     */
+    public abstract void setBox();
 }

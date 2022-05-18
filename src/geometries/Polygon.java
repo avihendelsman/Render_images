@@ -91,6 +91,8 @@ public class Polygon extends Geometry {
 
 	@Override
 	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		if (box != null && !box.IsRayHitBox(ray))
+			return null;
 		//get Intersections of plane
 		List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
 
@@ -132,5 +134,42 @@ public class Polygon extends Geometry {
 
 		//if the func not return null than we have Intersections with the polygon
 		return planeIntersections.stream().map(gp->new GeoPoint(this,gp.point)).toList();
+	}
+	/**
+	 * Set box for polygon
+	 */
+	@Override
+	public void setBox() {
+		Point pointI;
+		Point point = vertices.get(0);
+
+		//initialize max and min in the first element of vertices list
+		double maxX = point.getX();
+		double maxY = point.getY();
+		double maxZ = point.getZ();
+		double minX = maxX;
+		double minY = maxY;
+		double minZ = maxZ;
+		for (int i = 1; i < vertices.size(); i++) {	//loop for that find the max and min in all of the
+			pointI = vertices.get(i);										//coordinate of the polygon
+			if (maxX < pointI.getX())
+				maxX = pointI.getX();
+
+			if (maxY < pointI.getY())
+				maxY = pointI.getY();
+
+			if (maxZ < pointI.getZ())
+				maxZ = pointI.getZ();
+
+			if (minX > pointI.getX())
+				minX = pointI.getX();
+
+			if (minY > pointI.getY())
+				minY = pointI.getY();
+
+			if (minZ > pointI.getZ())
+				minZ = pointI.getZ();
+		}
+		box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
 	}
 }

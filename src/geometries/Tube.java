@@ -58,4 +58,7 @@ public class Tube extends Geometry{
     public String toString(){
         return "Ray is: " + axisRay + "\nradius is: " + radius;
     }
+    @Override
+    public void setBox() {
+    }
 }

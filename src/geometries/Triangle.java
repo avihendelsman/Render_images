@@ -29,6 +29,8 @@ public class Triangle extends Polygon {
 
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        if (box != null && !box.IsRayHitBox(ray))
+            return null;
         List<GeoPoint> resultPoint = plane.findGeoIntersectionsHelper(ray);
 
         if (resultPoint == null) // In case there is no intersection with the plane return null
@@ -53,5 +55,9 @@ public class Triangle extends Polygon {
             return result;
         } else
             return null;	//If the scalars are in a different sign
+    }
+    @Override
+    public void setBox() {
+        super.setBox();
     }
 }

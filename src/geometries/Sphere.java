@@ -45,8 +45,10 @@ public class Sphere extends Geometry{
 
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
-        double r = this.radius;
+        if (box != null && !box.IsRayHitBox(ray))
+            return null;
 
+        double r = this.radius;
         // Special case: if point p0 == center, that mean that all we need to calculate
         // is the radios mult scalar with the direction, and add p0
         if (center.equals(ray.getP0())) {
@@ -86,5 +88,21 @@ public class Sphere extends Geometry{
     @Override
     public String toString(){
         return "Point is: " + center + "\nradius is: " + radius;
+    }
+    /**
+     * Create bix for sphere
+     */
+    @Override
+    public void setBox() {
+        //Get the max and min for sphere box
+        double maxX = center.getX() + radius;
+        double maxY = center.getY() + radius;
+        double maxZ = center.getZ() + radius;
+
+        double minX = center.getX() - radius;
+        double minY = center.getY() - radius;
+        double minZ = center.getZ() - radius;
+
+        this.box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
     }
 }

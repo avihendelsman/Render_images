@@ -77,6 +77,8 @@ public class Plane extends Geometry{
 
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        if (box != null && !box.IsRayHitBox(ray))
+            return null;
         // In case there are zeroes in denominator and numerator
         // For example when ray is parallel to the plane
         if (ray.getP0().equals(p0) || isZero(this.normal.dotProduct(ray.getDir()))
@@ -98,4 +100,35 @@ public class Plane extends Geometry{
     public String toString(){
         return "Point is: " + p0 + "\nVector is: " + normal;
     }
+
+
+    /**
+     * create box for a plan
+     */
+    @Override
+    public void setBox() {
+        double pInfinite = Double.POSITIVE_INFINITY;
+        double nInfinite = Double.NEGATIVE_INFINITY;
+        //Initializing axis vectors
+        Vector nX = new Vector(1, 0, 0);
+        Vector nY = new Vector(0, 1, 0);
+        Vector nZ = new Vector(0, 0, 1);
+
+        //In case on of the axis is vertical to the plan,
+        //so the max and min point of this axis is the q0 in the point
+        if (nX.equals(normal) || nX.scale(-1).equals(normal)) {
+            box = new Box(p0.getX(), pInfinite, pInfinite, p0.getX(), nInfinite, nInfinite);
+        }
+        else if (nY.equals(normal) || nY.scale(-1).equals(normal)) {
+            box = new Box(pInfinite, p0.getY(), pInfinite, nInfinite, p0.getY(), nInfinite);
+        }
+
+        else if (nZ.equals(normal) || nZ.scale(-1).equals(normal)) {
+            box = new Box(pInfinite, pInfinite, p0.getZ(), nInfinite, nInfinite, p0.getZ());
+        }
+        else
+            box = new Box(pInfinite, pInfinite, pInfinite, nInfinite, nInfinite, nInfinite);
+    }
+
+
 }

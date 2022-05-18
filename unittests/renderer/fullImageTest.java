@@ -2,6 +2,7 @@ package renderer;
 
 import java.util.List;
 
+import geometries.Geometries;
 import geometries.Sphere;
 import geometries.Triangle;
 import lighting.AmbientLight;
@@ -49,48 +50,84 @@ public class fullImageTest {
         Material sphereMirror = new Material().setKR(0.4).setKD(0.3).setKS(1).setNShininess(50);
 
         scene.geometries.add(
-                new Triangle(pl.get(0), pl.get(1), pl.get(2)).setMaterial(mirror).setEmission(colMirror),
-                new Triangle(pl.get(1), pl.get(2), pl.get(3)).setMaterial(mirror).setEmission(colMirror),
-                new Triangle(pl.get(4), pl.get(6), pl.get(7)).setMaterial(mirror).setEmission(colMirror),
-                new Triangle(pl.get(7), pl.get(5), pl.get(4)).setMaterial(mirror).setEmission(colMirror),
-                new Triangle(pl.get(13), pl.get(14), pl.get(15)).setEmission(colFlooer).setMaterial(matFloor),
-                new Triangle(pl.get(13), pl.get(15), pl.get(16)).setEmission(colFlooer).setMaterial(matFloor),
-                new Triangle(pl.get(8), pl.get(9), pl.get(10)).setMaterial(matBasis).setEmission(colBasis),
-                new Triangle(pl.get(8), pl.get(10), pl.get(11)).setMaterial(matBasis).setEmission(colBasis),
-                new Triangle(pl.get(8), pl.get(11), pl.get(12)).setMaterial(matBasis).setEmission(colBasis),
-                new Triangle(pl.get(8), pl.get(12), pl.get(9)).setMaterial(matBasis).setEmission(colBasis),
-                new Sphere(new Point(0, 0, 60), 50).setEmission(new Color(30, 30, 30))
-                        .setMaterial(new Material().setkT(0.7).setKR(0.1).setKD(0.2).setKS(0.3).setNShininess(50)),
-                new Sphere(new Point(-15, -93, 80), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 0, 255)),
-                new Sphere(new Point(20, -93, 32), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 255, 255)),
-                new Sphere(new Point(-20, -93, 40), 7).setMaterial(matSmallSphere).setEmission(new Color(255, 0, 0)),
-                new Sphere(new Point(-23, -93, 90), 7).setMaterial(matSmallSphere)
-                        .setEmission(new Color(200, 255, 30)),
-                new Sphere(new Point(8, -93, 23), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 255, 0)),
-                new Sphere(new Point(90, -93, 21), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 0, 0)),
+                // back mirror
+                new Geometries(new Triangle(pl.get(0), pl.get(1), pl.get(2)).setMaterial(mirror).setEmission(colMirror),
+                        new Triangle(pl.get(1), pl.get(2), pl.get(3)).setMaterial(mirror).setEmission(colMirror)),
 
-                new Sphere(new Point(73, -93, 120), 7).setMaterial(matSmallSphere).setEmission(new Color(128, 0, 64)),
-                new Sphere(new Point(54, -93, 95), 7).setMaterial(matSmallSphere).setEmission(new Color(255, 50, 128)),
-                new Sphere(new Point(24, -93, 104), 7).setMaterial(matSmallSphere).setEmission(new Color(200, 180, 98)),
-                new Sphere(new Point(102, -93, 93), 7).setMaterial(matSmallSphere).setEmission(new Color(34, 177, 76)),
-                new Sphere(new Point(-70, -93, 105), 7).setMaterial(matSmallSphere).setEmission(new Color(200, 167, 30)),
-                new Sphere(new Point(-82, -93, 94), 7).setMaterial(matSmallSphere).setEmission(new Color(20, 154, 76)),
+                // left mirror
+                new Geometries(new Triangle(pl.get(4), pl.get(6), pl.get(7)).setMaterial(mirror).setEmission(colMirror),
+                        new Triangle(pl.get(7), pl.get(5), pl.get(4)).setMaterial(mirror).setEmission(colMirror)),
 
+                // floor
+                new Geometries(
+                        new Triangle(pl.get(13), pl.get(14), pl.get(15)).setEmission(colFlooer).setMaterial(matFloor),
+                        new Triangle(pl.get(13), pl.get(15), pl.get(16)).setEmission(colFlooer).setMaterial(matFloor)),
 
-                new Sphere(new Point(0, -41, 60), 7).setMaterial(matSmallSphere).setEmission(new Color(255, 128, 0)),
-                new Sphere(new Point(10, -37, 70), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 255, 255)),
-                new Sphere(new Point(-20, 23, 27), 7).setMaterial(matSmallSphere).setEmission(new Color(255, 0, 0)),
-                new Sphere(new Point(15, 10, 90), 7).setMaterial(matSmallSphere).setEmission(new Color(200, 255, 30)),
-                new Sphere(new Point(10, 40, 52), 7).setMaterial(matSmallSphere).setEmission(new Color(0, 255, 0)),
-                new Sphere(new Point(-30, -30, 70), 7).setMaterial(matSmallSphere)
-                        .setEmission(new Color(128, 255, 128)),
-                new Sphere(new Point(20, -14, 92), 7).setMaterial(matSmallSphere).setEmission(new Color(255, 0, 128)),
-                new Sphere(new Point(30, 3, 100), 7).setMaterial(matSmallSphere).setEmission(new Color(128, 0, 64)),
-                new Sphere(new Point(-24, 23, 40), 7).setMaterial(matSmallSphere)
-                        .setEmission(new Color(64, 128, 128)),
-                new Sphere(new Point(0, -10, 90), 7).setMaterial(sphereMirror).setEmission(new Color(40, 40, 40))
+                // basis
+                new Geometries(
+                        new Triangle(pl.get(8), pl.get(9), pl.get(10)).setMaterial(matBasis).setEmission(colBasis),
+                        new Triangle(pl.get(8), pl.get(10), pl.get(11)).setMaterial(matBasis).setEmission(colBasis),
+                        new Triangle(pl.get(8), pl.get(11), pl.get(12)).setMaterial(matBasis).setEmission(colBasis),
+                        new Triangle(pl.get(8), pl.get(12), pl.get(9)).setMaterial(matBasis).setEmission(colBasis)),
 
-        );
+                // Lottery sphere
+                new Geometries(
+                        new Sphere(new Point(0, 0, 60), 50).setEmission(new Color(30, 30, 30)).setMaterial(
+                                new Material().setkT(0.7).setKR(0.1).setKD(0.2).setKS(0.3).setNShininess(50)),
+                        new Sphere(new Point(0, -41, 60), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(255, 128, 0)),
+                        new Sphere(new Point(10, -37, 70), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(0, 255, 255)),
+                        new Sphere(new Point(-20, 23, 27), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(255, 0, 0)),
+                        new Sphere(new Point(15, 10, 90), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(200, 255, 30)),
+                        new Sphere(new Point(10, 40, 52), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(0, 255, 0)),
+                        new Sphere(new Point(-30, -30, 70), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(128, 255, 128)),
+                        new Sphere(new Point(20, -14, 92), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(255, 0, 128)),
+                        new Sphere(new Point(30, 3, 100), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(128, 0, 64)),
+                        new Sphere(new Point(-24, 23, 40), 7).setMaterial(matSmallSphere)
+                                .setEmission(new Color(64, 128, 128)),
+                        new Sphere(new Point(0, -10, 90), 7).setMaterial(sphereMirror)
+                                .setEmission(new Color(40, 40, 40))),
+
+                // floor spheres
+                new Geometries(
+                        // right sphere
+                        new Geometries(
+                                new Sphere(new Point(90, -93, 21), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(0, 0, 0)),
+                                new Sphere(new Point(102, -93, 93), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(34, 177, 76)),
+                                new Sphere(new Point(73, -93, 120), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(128, 0, 64)),
+                                new Sphere(new Point(54, -93, 95), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(255, 50, 128))),
+                        // center sphere
+                        new Geometries(
+                                new Sphere(new Point(-15, -93, 80), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(0, 0, 255)),
+                                new Sphere(new Point(20, -93, 32), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(0, 255, 255)),
+                                new Sphere(new Point(-20, -93, 40), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(255, 0, 0)),
+                                new Sphere(new Point(-23, -93, 90), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(200, 255, 30)),
+                                new Sphere(new Point(8, -93, 23), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(0, 255, 0)),
+                                new Sphere(new Point(24, -93, 104), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(200, 180, 98))),
+                        // left spheres
+                        new Geometries(
+                                new Sphere(new Point(-70, -93, 105), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(200, 167, 30)),
+                                new Sphere(new Point(-82, -93, 94), 7).setMaterial(matSmallSphere)
+                                        .setEmission(new Color(20, 154, 76)))));
+
 
         scene.lights.add(new DirectionalLight(new Color(300, 300, 300), new Vector(-10, -5, -10)));
         scene.lights.add(new PointLight(new Color(300, 200, 100), new Point(-50, 100, 60),1,0,0).setKL(4E-2).setKQ(2E-8));

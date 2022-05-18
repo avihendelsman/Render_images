@@ -35,20 +35,79 @@ public class Geometries extends Intersectable {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray){
-        if (geometriesBodies.isEmpty()) // In case the collection is empty
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+
+        if (box != null && !box.IsRayHitBox(ray))
             return null;
 
-        List<GeoPoint> points = null, result;
-        for (Intersectable body: geometriesBodies) {
-            result = body.findGeoIntersectionsHelper(ray);
-            if(result != null){
-                if(points == null)
-                    points = new LinkedList<GeoPoint>(result);
+        if (geometriesBodies.isEmpty())		// In case the collection is empty
+            return null;
+
+        List<GeoPoint> result = null, points;
+
+        for (Intersectable geom : geometriesBodies)	// The loop checks intersections for each shape
+        {
+            points = geom.findGeoIntersectionsHelper(ray);
+
+            if (points != null) 				// In case there are intersections
+            {
+                if (result == null)  		    // If we only now start to add shape intersections - assigns the points to result
+                {
+                    result = points;
+                }
                 else
-                    points.addAll(result);
+                    result.addAll(points);
             }
         }
-        return points;
+        return result;
+    }
+    /**
+     * Function that create box for each geometry
+     */
+    public void setGeometriesBoxes() {
+        for(Intersectable geo : geometriesBodies) {
+            geo.setBox();
+        }
+    }
+
+    /**
+     * Create big box that will contain all of the geometries
+     */
+
+    @Override
+    public void setBox() {
+
+        setGeometriesBoxes(); //Create box for each geometry
+
+        Intersectable intersecI = geometriesBodies.get(0);
+        double maxX = intersecI.box.maxX;
+        double maxY = intersecI.box.maxY;
+        double maxZ = intersecI.box.maxZ;
+        double minX = maxX;
+        double minY = maxY;
+        double minZ = maxZ;
+
+        for(Intersectable geo : geometriesBodies) {	//For each geometry find the max and min of is box,
+            //and create the geometries box
+
+            if (maxX < geo.box.maxX)
+                maxX = geo.box.maxX;
+
+            if (maxY < geo.box.maxY)
+                maxY = geo.box.maxY;
+
+            if (maxZ < geo.box.maxZ)
+                maxZ = geo.box.maxZ;
+
+            if (minX > geo.box.minX)
+                minX = geo.box.minX;
+
+            if (minY > geo.box.minY)
+                minY = geo.box.minY;
+
+            if (minZ > geo.box.minZ)
+                minZ = geo.box.minZ;
+        }
+        box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
     }
 }
