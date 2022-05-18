@@ -1,3 +1,4 @@
+package renderer;
 
 import java.util.List;
 
@@ -15,7 +16,6 @@ import renderer.RayTracerBasic;
 
 import renderer.RayTracerSuperSampling;
 import scene.Scene;
-
 
 /**
  * test the all integration of rendering image
@@ -98,7 +98,7 @@ public class fullImageTest {
                 .setNarrowBeam(4).setKL(0.001).setKQ(0.0000025));
 
         camera.setImageWriter(new ImageWriter("fullImageSS1", 1080, 1080)) //
-                .setRayTracer(new RayTracerSuperSampling(scene, camera, 15))
+                .setRayTracer(new RayTracerSuperSampling(scene, camera, 10))
                 //.setRayTracer(new RayTracerBasic(scene)) //
                 .renderImage(); //
         camera.writeToImage();
