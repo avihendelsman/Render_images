@@ -73,7 +73,6 @@ public class Geometries extends Intersectable {
     /**
      * Create big box that will contain all of the geometries
      */
-
     @Override
     public void setBox() {
 
@@ -110,4 +109,5 @@ public class Geometries extends Intersectable {
         }
         box = new Box(maxX, maxY, maxZ, minX, minY, minZ);
     }
+
 }

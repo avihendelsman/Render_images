@@ -63,7 +63,7 @@ public class fullImageTest {
                         new Triangle(pl.get(13), pl.get(14), pl.get(15)).setEmission(colFlooer).setMaterial(matFloor),
                         new Triangle(pl.get(13), pl.get(15), pl.get(16)).setEmission(colFlooer).setMaterial(matFloor)),
 
-                // basis
+                 //basis
                 new Geometries(
                         new Triangle(pl.get(8), pl.get(9), pl.get(10)).setMaterial(matBasis).setEmission(colBasis),
                         new Triangle(pl.get(8), pl.get(10), pl.get(11)).setMaterial(matBasis).setEmission(colBasis),
@@ -135,8 +135,8 @@ public class fullImageTest {
                 .setNarrowBeam(4).setKL(0.001).setKQ(0.0000025));
 
         camera.setImageWriter(new ImageWriter("fullImageSS1", 1080, 1080)) //
-                .setRayTracer(new RayTracerSuperSampling(scene, camera, 10))
-                //.setRayTracer(new RayTracerBasic(scene)) //
+                .setRayTracer(new RayTracerSuperSampling(scene, camera, 10).turnAllBoxesOn())
+                //.setRayTracer(new RayTracerBasic(scene).turnAllBoxesOn()) //
                 .renderImage(); //
         camera.writeToImage();
     }

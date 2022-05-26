@@ -34,6 +34,15 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
+     * Function that creates boxes for each geometry (for on/off switch)
+     * @return This
+     */
+    public RayTracerBasic turnAllBoxesOn() {
+        scene.geometries.setBox();
+        return this;
+    }
+    
+    /**
      * Implementation for the abstract method traceRay
      */
     @Override
