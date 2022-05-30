@@ -216,11 +216,21 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
 
-        for (int i = 0; i < nX; i++) {
-            for (int j = 0; j < nY; j++) {
-                imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
-            }
+        double printInterval = 0.01;
+        int threadsCount = 3;
+        Pixel.initialize(nY, nX, printInterval);
+        while (threadsCount-- > 0) {
+            new Thread(() -> {
+                for (Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone())
+                    imageWriter.writePixel(pixel.col, pixel.row, castRay(nX, nY, pixel.col, pixel.row));
+            }).start();
         }
+        Pixel.waitToFinish();
+        //for (int i = 0; i < nX; i++) {
+        //    for (int j = 0; j < nY; j++) {
+        //        imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
+        ///    }
+        //}
     }
 
     /**
