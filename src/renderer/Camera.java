@@ -216,6 +216,23 @@ public class Camera {
         int nY = this.imageWriter.getNy();
         int nX = this.imageWriter.getNx();
 
+        for (int i = 0; i < nX; i++) {
+            for (int j = 0; j < nY; j++) {
+                imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
+            }
+        }
+    }
+
+    public void renderImageWithTreads() {
+        // In case that not all of the fields are filled
+        if (imageWriter == null || rayTracerBase == null)
+            throw new MissingResourceException("Missing", "resource", "exception");
+
+        // The nested loop finds and creates a ray for each pixels, finds its color and
+        // writes it to the image pixles
+        int nY = this.imageWriter.getNy();
+        int nX = this.imageWriter.getNx();
+
         double printInterval = 0.01;
         int threadsCount = 3;
         Pixel.initialize(nY, nX, printInterval);
@@ -226,11 +243,6 @@ public class Camera {
             }).start();
         }
         Pixel.waitToFinish();
-        //for (int i = 0; i < nX; i++) {
-        //    for (int j = 0; j < nY; j++) {
-        //        imageWriter.writePixel(j, i, castRay(nX, nY, j, i)); // Traces the color of the ray and writes it to the image
-        ///    }
-        //}
     }
 
     /**

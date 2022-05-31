@@ -113,6 +113,7 @@ public class ReflectionRefractionTests {
 	/**
 	 * Produce a picture of a pyramid lighted by a spot light with a mirror effects
 	 */
+	/**
 	@Test
 	public void pyramidTransparentSphere() {
 		Camera camera = new Camera(new Point(-140, 20, 35), new Vector(1, -0.15, -0.25), new Vector(1, 0, 4))
@@ -168,4 +169,5 @@ public class ReflectionRefractionTests {
 				.renderImage(); //
 		camera.writeToImage();
 	}
+	*/
 }

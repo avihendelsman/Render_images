@@ -21,7 +21,6 @@ import scene.Scene;
 /**
  * test the all integration of rendering image
  *
- *
  */
 public class fullImageTest {
 
@@ -137,7 +136,7 @@ public class fullImageTest {
         camera.setImageWriter(new ImageWriter("fullImageSS1", 1080, 1080)) //
                 .setRayTracer(new RayTracerSuperSampling(scene, camera, 10).turnAllBoxesOn())
                 //.setRayTracer(new RayTracerBasic(scene).turnAllBoxesOn()) //
-                .renderImage(); //
+                .renderImageWithTreads(); //
         camera.writeToImage();
     }
 
